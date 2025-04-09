@@ -50,6 +50,46 @@
                 ]
             },
             {
+                "id": "ModuleForm",
+                "title": "Module",
+                "formFieldList": [
+                    {
+                        "id": "moduleName",
+                        "name": "Module Name",
+                        "type": "text",
+                        "required": true
+                    },
+                    {
+                        "id": "moduleCode",
+                        "name": "Module Code",
+                        "type": "text",
+                        "required": true
+                    },
+                    {
+                        "id": "credits",
+                        "name": "Credits",
+                        "type": "number",
+                        "required": true
+                    },
+                    {
+                        "id": "description",
+                        "name": "Description",
+                        "type": "textarea",
+                        "required": false
+                    },
+                    {
+                        "id": "active",
+                        "name": "Is Active?",
+                        "type": "checkbox",
+                        "required": false
+                    },
+                    {
+                        "type": "okButton",
+                        "name": "Ok"
+                    }
+                ]
+            },
+            {
                 "id": "ToDoForm",
                 "title": { "default": "ToDo"
                 },
@@ -95,7 +135,7 @@
                 "elementList": [
                     {
                         "type": "pageLabel",
-                        "value": "<h4>Willkommen bei DevOps</h4>",
+                        "value": "<h4>Willkommen bei DevOps Hitz</h4>",
                         "newRow": true
                     },
                     {
@@ -107,9 +147,35 @@
                         "page": "toDoPage",
                         "width": 2,
                         "newRow": true
+                    },
+                    {
+                        "type": "button",
+                        "name": { "default": "Module" },
+                        "icon": "fa-file-alt",
+                        "color": "wet-asphalt",
+                        "page": "modulePage",
+                        "width": 2
                     }
                 ]
             },
+            {
+                "id": "modulePage",
+                "elementList": [
+                {
+                "type": "backbutton"        
+                },
+                {
+                "type": "newButton",
+                "name": { "default": "Neues Modul" },
+                "icon": "fa-user",
+                "color": "green",
+                "width": 2,
+                "form" : {
+                "form" : "ModuleForm"
+                }
+                }
+                ]
+                },
             {
                 "id": "toDoPage",
                 "elementList": [
