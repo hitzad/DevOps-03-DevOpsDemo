@@ -26,15 +26,21 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
-}
-
-test {
-    finalizedBy jacocoTestReport // report is always generated after tests run
+	finalizedBy jacocoTestReport // Report wird nach Tests automatisch erzeugt
 }
 
 jacocoTestReport {
+	dependsOn test
 	reports {
-		xml.required = true
+		xml.required = true // GANZ WICHTIG für SonarQube
 		html.required = true
+	}
+}
+
+sonarqube {
+	properties {
+		property "sonar.projectKey", "devopsdemo-backend"
+		property "sonar.host.url", "http://localhost:9000"
+		property "sonar.token", "sqa_2db8daa931d09b399f685ea342accedc9b179fa2"
 	}
 }

@@ -12,9 +12,9 @@ public class PathListEntryTest {
         PathListEntry<String> entry = new PathListEntry<>();
 
         // Test Key
-        entry.setKey("testKey", "testName");
-        assertEquals("testKey", entry.getKey().getKey());
-        assertEquals("testName", entry.getKey().getName());
+        entry.setEntryKey("testKey", "testName");
+        assertEquals("testKey", entry.getEntryKey().getKeyId());
+        assertEquals("testName", entry.getEntryKey().getName());
 
         // Test Name
         entry.setName("testName");
@@ -70,8 +70,8 @@ public class PathListEntryTest {
         PathListEntry<String> entry2 = new PathListEntry<>();
 
         // Set the same key for both entries
-        entry1.setKey("testKey", "testName");
-        entry2.setKey("testKey", "testName");
+        entry1.setEntryKey("testKey", "testName");
+        entry2.setEntryKey("testKey", "testName");
 
         // Test equals
         assertEquals(entry1, entry2);
@@ -80,7 +80,7 @@ public class PathListEntryTest {
         assertEquals(entry1.hashCode(), entry2.hashCode());
 
         // Modify one entry and test inequality
-        entry2.setKey("differentKey", "testName");
+        entry2.setEntryKey("differentKey", "testName");
         assertNotEquals(entry1, entry2);
         assertNotEquals(entry1.hashCode(), entry2.hashCode());
     }
@@ -113,8 +113,8 @@ public class PathListEntryTest {
         PathListEntry<String> entry2 = new PathListEntry<>();
 
         // Set null key for both entries
-        entry1.setKey(null, null);
-        entry2.setKey(null, null);
+        entry1.setEntryKey(null, null);
+        entry2.setEntryKey(null, null);
 
         // Test equals with null values
         assertEquals(entry1, entry2);
@@ -123,7 +123,7 @@ public class PathListEntryTest {
         assertEquals(entry1.hashCode(), entry2.hashCode());
 
         // Modify one entry and test inequality
-        entry2.setKey("testKey", "testName");
+        entry2.setEntryKey("testKey", "testName");
         assertNotEquals(entry1, entry2);
         assertNotEquals(entry1.hashCode(), entry2.hashCode());
     }
@@ -134,8 +134,8 @@ public class PathListEntryTest {
         PathListEntry<String> entry2 = new PathListEntry<>();
 
         // Set different keys for both entries
-        entry1.setKey("key1", "name1");
-        entry2.setKey("key2", "name2");
+        entry1.setEntryKey("key1", "name1");
+        entry2.setEntryKey("key2", "name2");
 
         // Test equals with different values
         assertNotEquals(entry1, entry2);

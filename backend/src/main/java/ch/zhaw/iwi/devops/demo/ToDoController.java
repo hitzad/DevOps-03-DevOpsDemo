@@ -54,7 +54,7 @@ public class ToDoController {
         var result = new ArrayList<PathListEntry<Integer>>();
         for (var todo : this.todos.values()) {
             var entry = new PathListEntry<Integer>();
-            entry.setKey(todo.getId(), "todoKey");
+            entry.setEntryKey(todo.getId(), "todoKey");
             entry.setName(todo.getTitle());
             entry.getDetails().add(todo.getDescription());
             entry.setTooltip(todo.getDescription());

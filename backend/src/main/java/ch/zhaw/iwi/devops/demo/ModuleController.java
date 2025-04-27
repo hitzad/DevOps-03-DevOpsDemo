@@ -52,7 +52,7 @@ public class ModuleController {
         int id = 1;
         for (var module : this.modules.values()) {
             var entry = new PathListEntry<Integer>();
-            entry.setKey(id, "moduleKey");
+            entry.setEntryKey(id, "moduleKey");
             entry.setName(module.getModuleName());
             entry.getDetails().add("Code: " + module.getModuleCode());
             entry.getDetails().add("Credits: " + module.getCredits());
