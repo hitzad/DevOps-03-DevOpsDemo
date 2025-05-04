@@ -1,10 +1,10 @@
 FROM openjdk:21-jdk-slim
 
-# Node.js & system tools installieren
+# Node.js (inkl. npm) und Systemtools installieren
 RUN apt-get update && \
-    apt-get install -y curl unzip gnupg && \
+    apt-get install -y curl unzip gnupg ca-certificates && \
     curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
-    apt-get install -y nodejs npm && \
+    apt-get install -y nodejs && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Arbeitsverzeichnis setzen
