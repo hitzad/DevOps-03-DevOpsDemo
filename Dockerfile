@@ -1,12 +1,11 @@
 FROM openjdk:21-jdk-slim
 
-# Node.js und Gradle installieren
-RUN apt-get update && apt-get install -y \
-    curl \
-    unzip \
-    nodejs \
-    npm \
-    gradle
+# Node.js & system tools installieren
+RUN apt-get update && \
+    apt-get install -y curl unzip gnupg && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs npm && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Arbeitsverzeichnis setzen
 WORKDIR /usr/src/app
@@ -15,12 +14,16 @@ WORKDIR /usr/src/app
 COPY . .
 
 # Frontend-Dateien ins Spring-Backend kopieren
-RUN mkdir -p backend/src/main/resources/static
-RUN cp -r frontend/* backend/src/main/resources/static
+RUN mkdir -p backend/src/main/resources/static && \
+    cp -r frontend/* backend/src/main/resources/static
 
-# Spring Boot App bauen – mit systemweitem Gradle statt Wrapper
-RUN cd backend && gradle build
+# Gradle Wrapper ausführbar machen
+RUN chmod +x backend/gradlew
 
-# Port öffnen & App starten
+# Spring Boot App mit dem Wrapper bauen
+WORKDIR /usr/src/app/backend
+RUN ./gradlew build
+
+# Port öffnen und App starten
 EXPOSE 8080
 CMD ["java", "-jar", "/usr/src/app/backend/build/libs/demo-0.0.1-SNAPSHOT.jar"]
