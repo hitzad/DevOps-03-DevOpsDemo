@@ -16,15 +16,16 @@ pipeline {
                 }
                 jacoco()
                 junit stdioRetention: '', testResults: '**/test-results/test/*.xml'
-                nodejs('NodeJS 22.11.0') {
-                    dir('frontend') {
-    nodejs('NodeJS 22.11.0') {
-        sh 'npx sonar-scanner ' +
-           '-Dsonar.projectKey=devopsdemo-frontend ' +
-           '-Dsonar.projectName=devopsdemo-frontend ' +
-           '-Dsonar.host.url=http://sonarqube:9000 ' +
-           '-Dsonar.token=sqp_5b7c3934875157f88367b7ee373c3188bb4f32d5'
+withCredentials([string(credentialsId: 'Sonarqube-Frontend', variable: 'TOKEN')]) {
+    dir('frontend') {
+        nodejs('NodeJS 22.11.0') {
+            sh 'npx sonar-scanner -Dsonar.host.url=http://sonarqube:9000 ' +
+               '-Dsonar.projectKey=DevOpsDemo-Frontend ' +
+               '-Dsonar.projectName=\'DevOpsDemo-Frontend\' ' +
+               '-Dsonar.token=$TOKEN'
+        }
     }
+}
 }
                 }
                 withCredentials([string(credentialsId: 'Sonarqube-Backend', variable: 'TOKEN')]) {
