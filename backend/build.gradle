@@ -41,6 +41,6 @@ sonarqube {
 	properties {
 		property "sonar.projectKey", "devopsdemo-backend"
 		property "sonar.host.url", "http://localhost:9000"
-		property "sonar.token", "sqa_2db8daa931d09b399f685ea342accedc9b179fa2"
+		property "sonar.token", "sqp_5e8255d4301b04c028c9a1948ea452b7d170f626"
 	}
 }
