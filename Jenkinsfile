@@ -16,14 +16,6 @@ pipeline {
                 }
                 jacoco()
                 junit stdioRetention: '', testResults: '**/test-results/test/*.xml'
-withCredentials([string(credentialsId: 'Sonarqube-Frontend', variable: 'TOKEN')]) {
-    dir('frontend') {
-        nodejs('NodeJS 22.11.0') {
-            sh 'npx sonar-scanner -Dsonar.host.url=http://sonarqube:9000 ' +
-               '-Dsonar.projectKey=DevOpsDemo-Frontend ' +
-               '-Dsonar.projectName=\'DevOpsDemo-Frontend\' ' +
-               '-Dsonar.token=$TOKEN'
-        }
     }
 }
 }
