@@ -14,7 +14,7 @@ WORKDIR /usr/src/app
 # Projektdateien kopieren
 COPY . .
 
-# Nur statische Frontend-Dateien in das Spring Boot Static-Verzeichnis kopieren
+# Nur statische Frontend-Dateien ins Spring Boot Static-Verzeichnis kopieren
 RUN mkdir -p backend/src/main/resources/static && \
     cp frontend/index.html backend/src/main/resources/static/ && \
     cp frontend/favicon.ico backend/src/main/resources/static/ && \
@@ -28,5 +28,5 @@ RUN chmod +x gradlew && ./gradlew build
 ENV PORT=80
 EXPOSE 80
 
-# Spring Boot starten auf Port 80
-CMD ["java", "-jar", "/usr/src/app/backend/build/libs/demo-0.0.1-SNAPSHOT.jar", "--server.port=${PORT}"]
+# Spring Boot starten auf Port 80 – KORREKT mit Umgebungsvariable
+CMD ["sh", "-c", "java -jar /usr/src/app/backend/build/libs/demo-0.0.1-SNAPSHOT.jar --server.port=${PORT}"]
