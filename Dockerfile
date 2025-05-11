@@ -1,4 +1,4 @@
-# Basis-Image: OpenJDK 21 (schlank)
+# Basis-Image: OpenJDK 21
 FROM openjdk:21-jdk-slim
 
 # Node.js + Tools installieren
@@ -8,27 +8,27 @@ RUN apt-get update && \
     apt-get install -y nodejs && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Arbeitsverzeichnis setzen
+# Arbeitsverzeichnis
 WORKDIR /usr/src/app
 
 # Projektdateien kopieren
 COPY . .
 
-# React-Frontend bauen
+# Nur Abhängigkeiten installieren (kein build!)
 WORKDIR /usr/src/app/frontend
-RUN npm install && npm run build
+RUN npm install
 
-# React-Build in Spring Boot Static-Ordner kopieren
+# HTML + JS in Spring Boot static/ kopieren
 RUN mkdir -p /usr/src/app/backend/src/main/resources/static && \
-    cp -r build/* /usr/src/app/backend/src/main/resources/static
+    cp -r . /usr/src/app/backend/src/main/resources/static
 
-# Gradle Wrapper ausführbar machen und Backend bauen
+# Spring Boot build
 WORKDIR /usr/src/app/backend
 RUN chmod +x ./gradlew && ./gradlew build
 
-# Azure-kompatibler Port
+# Port setzen (für Azure)
 ENV PORT=80
 EXPOSE 80
 
-# App starten mit dynamischem JAR-Namen
+# Start Spring Boot App mit generischem Jar
 CMD ["sh", "-c", "java -jar backend/build/libs/*.jar --server.port=${PORT}"]
