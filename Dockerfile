@@ -29,4 +29,5 @@ ENV PORT=80
 EXPOSE 80
 
 # Spring Boot starten auf Port 80 – KORREKT mit Umgebungsvariable
-CMD ["sh", "-c", "java -jar /usr/src/app/backend/build/libs/demo-0.0.1-SNAPSHOT.jar --server.port=${PORT}"]
+CMD ["java", "-jar", "/usr/src/app/backend/build/libs/devopsdemo-backend-0.0.1-SNAPSHOT.jar", "--server.port=${PORT}"]
+
