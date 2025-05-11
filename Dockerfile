@@ -1,34 +1,32 @@
-# Basis-Image: OpenJDK 21
+# Basis-Image mit Java
 FROM openjdk:21-jdk-slim
 
-# Node.js + Tools installieren
+# Node.js und Tools installieren
 RUN apt-get update && \
     apt-get install -y curl unzip gnupg ca-certificates && \
     curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Arbeitsverzeichnis
+# Arbeitsverzeichnis setzen
 WORKDIR /usr/src/app
 
 # Projektdateien kopieren
 COPY . .
 
-# Nur Abhängigkeiten installieren (kein build!)
-WORKDIR /usr/src/app/frontend
-RUN npm install
+# Nur statische Frontend-Dateien in das Spring Boot Static-Verzeichnis kopieren
+RUN mkdir -p backend/src/main/resources/static && \
+    cp frontend/index.html backend/src/main/resources/static/ && \
+    cp frontend/favicon.ico backend/src/main/resources/static/ && \
+    cp frontend/*.json backend/src/main/resources/static/ || true
 
-# HTML + JS in Spring Boot static/ kopieren
-RUN mkdir -p /usr/src/app/backend/src/main/resources/static && \
-    cp -r . /usr/src/app/backend/src/main/resources/static
-
-# Spring Boot build
+# Spring Boot App bauen
 WORKDIR /usr/src/app/backend
-RUN chmod +x ./gradlew && ./gradlew build
+RUN chmod +x gradlew && ./gradlew build
 
-# Port setzen (für Azure)
+# Azure-kompatibel: Port 80 verwenden
 ENV PORT=80
 EXPOSE 80
 
-# Start Spring Boot App mit generischem Jar
-CMD ["sh", "-c", "java -jar backend/build/libs/*.jar --server.port=${PORT}"]
+# Spring Boot starten auf Port 80
+CMD ["java", "-jar", "/usr/src/app/backend/build/libs/demo-0.0.1-SNAPSHOT.jar", "--server.port=${PORT}"]
