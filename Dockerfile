@@ -29,7 +29,7 @@ ENV PORT=8080
 EXPOSE 8080
 
 # Start mit variablem Port
-CMD ["sh", "-c", "java -jar build/libs/demo-0.0.1-SNAPSHOT.jar --server.port=${PORT}"]
+CMD ["sh", "-c", "java -jar /usr/src/app/backend/build/libs/demo-0.0.1-SNAPSHOT.jar --server.port=$PORT"]
 
 
 
