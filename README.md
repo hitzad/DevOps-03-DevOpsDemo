@@ -44,7 +44,7 @@ Ich habe den bestehenden Service erweitert und eine neue `POST`-Anfrage zur Verw
   "description": "This module covers advanced Adrian techniques.",
   "active": true
 }
-
+json
 ---
 
 ## 📸 Screenshot: POST-Request in Postman
