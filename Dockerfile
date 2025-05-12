@@ -1,27 +1,21 @@
-# Basis-Image mit Java
 FROM openjdk:21-jdk-slim
+RUN apt-get update && apt-get install -y curl \
+  && curl -sL https://deb.nodesource.com/setup_20.x | bash - \
+  && apt-get install -y nodejs \
+  && curl -L https://www.npmjs.com/install.sh | npm_install="10.9.0" | sh
+RUN apt-get update && apt-get install -y python3.10
 
-# Arbeitsverzeichnis setzen
 WORKDIR /usr/src/app
 
-# Projektdateien kopieren
 COPY . .
 
-# Statische Frontend-Dateien in das Spring Boot Static-Verzeichnis kopieren
-RUN mkdir -p backend/src/main/resources/static && \
-    cp frontend/index.html backend/src/main/resources/static/ && \
-    cp frontend/favicon.ico backend/src/main/resources/static/ && \
-    cp frontend/*.json backend/src/main/resources/static/ || true
+RUN cd frontend && npm install
+RUN mkdir -p backend/src/main/resources/static
+RUN mv frontend/* backend/src/main/resources/static
+RUN cd backend && sed -i 's/\r$//' gradlew && chmod +x gradlew
+RUN cd backend && ./gradlew build
 
-# Spring Boot App bauen
-WORKDIR /usr/src/app/backend
-RUN chmod +x gradlew && ./gradlew build
-
-# Azure-kompatibel: Port 80 verwenden
-ENV PORT=80
-EXPOSE 80
-
-# Spring Boot starten auf Port 80
-CMD ["sh", "-c", "java -jar build/libs/demo-0.0.1-SNAPSHOT.jar --server.port=$PORT"]
+EXPOSE 8080
+CMD ["java", "-jar", "/usr/src/app/backend/build/libs/demo-0.0.1-SNAPSHOT.jar"]
 
 
