@@ -42,16 +42,14 @@ Ich habe den bestehenden Service erweitert und eine neue `POST`-Anfrage zur Verw
   "description": "This module covers advanced Adrian techniques.",
   "active": true
 }
-📸 Screenshot (POST-Request in Postman):
-
-![GET Ergebnis](images\Post1.png)
+### 📸 Screenshot: POST-Request in Postman
+![POST in Postman](images/Post1.png)
 
 Ergebnis in Browser (GET /services/module)
 Nach dem POST ist das neue Modul per GET sichtbar:
 
-📸 Screenshot (Modul erfolgreich gespeichert):
-
-![POST](images\Rest-Services.png)
+### 📸 Screenshot: GET-Ergebnis im Browser
+![GET Ergebnis](images/Rest-Services.png)
 
 💡 Fehler & Erkenntnisse
 Bereich	Problem	Lösung
