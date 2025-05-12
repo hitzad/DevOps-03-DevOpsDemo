@@ -32,7 +32,7 @@ Ich habe das Projekt von der offiziellen Vorlage kopiert und in Visual Studio Co
 
 Ich habe den bestehenden Service erweitert und eine neue `POST`-Anfrage zur Verwaltung von "Modulen" hinzugefügt. Die API erlaubt das Erstellen und Abrufen von Modulen mit Feldern wie `moduleName`, `moduleCode`, `description` usw.
 
-### Beispiel-POST-Request in Postman
+## 📮 Beispiel-POST-Request in Postman
 
 ```json
 {
@@ -42,6 +42,8 @@ Ich habe den bestehenden Service erweitert und eine neue `POST`-Anfrage zur Verw
   "description": "This module covers advanced Adrian techniques.",
   "active": true
 }
+
+
 ### 📸 Screenshot: POST-Request in Postman
 ![POST in Postman](images/Post1.png)
 
@@ -62,17 +64,9 @@ Pull Request	Änderung war nicht sichtbar auf GitHub	Lokale Änderungen committe
 🧑‍🎨 UI-Anpassung (Path Frontend)
 Ich habe in model.json eine neue Kachel hinzugefügt:
 
-json
-Copy
-Edit
-{
-  "type": "button",
-  "name": { "default": "Module" },
-  "icon": "fa-file-alt",
-  "color": "wet-asphalt",
-  "page": "modulePage",
-  "width": 2
-}
+<pre> ```json { "type": "button", "name": { "default": "Module" }, "icon": "fa-file-alt", "color": "wet-asphalt", "page": "modulePage", "width": 2 } ``` </pre>
+
+
 Zusätzlich wurde eine neue Seite modulePage erstellt, mit einem Button zum Anlegen eines neuen Moduls (inkl. Verlinkung zum Formular).
 
 🧠 Learnings
