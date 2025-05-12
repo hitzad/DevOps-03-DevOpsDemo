@@ -44,14 +44,14 @@ Ich habe den bestehenden Service erweitert und eine neue `POST`-Anfrage zur Verw
 }
 📸 Screenshot (POST-Request in Postman):
 
-\images\Rest-Services.png
+(\images\Rest-Services.png)
 
 Ergebnis in Browser (GET /services/module)
 Nach dem POST ist das neue Modul per GET sichtbar:
 
 📸 Screenshot (Modul erfolgreich gespeichert):
 
-\images\Rest-Services.png
+(\images\Rest-Services.png)
 
 💡 Fehler & Erkenntnisse
 Bereich	Problem	Lösung
