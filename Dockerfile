@@ -15,9 +15,8 @@ COPY . .
 
 # Frontend statisch ins Backend kopieren (damit Spring Boot sie bereitstellt)
 RUN mkdir -p backend/src/main/resources/static && \
-    cp frontend/*.json backend/src/main/resources/static/ && \
-    cp frontend/*.html backend/src/main/resources/static/ && \
-    cp frontend/*.ico backend/src/main/resources/static/ || true
+    cp frontend/index.html frontend/model.json frontend/favicon.ico backend/src/main/resources/static/
+
 
 # Gradle Wrapper ausführbar machen und App bauen
 WORKDIR /usr/src/app/backend
