@@ -14,23 +14,20 @@ WORKDIR /usr/src/app
 # Projektdateien kopieren
 COPY . .
 
-# Statisches Frontend kopieren
+# Statische Frontend-Dateien ins Backend-Static-Verzeichnis kopieren
 RUN mkdir -p backend/src/main/resources/static && \
     cp frontend/index.html backend/src/main/resources/static/ && \
     cp frontend/favicon.ico backend/src/main/resources/static/ || true && \
     cp frontend/*.json backend/src/main/resources/static/ || true
 
-# In das Backend-Verzeichnis wechseln und App bauen
+# Spring Boot App bauen
 WORKDIR /usr/src/app/backend
 RUN chmod +x gradlew && ./gradlew build
 
-# Azure gibt den Port per ENV-Variable vor
-ENV PORT=8080
+# Port dynamisch über Azure (z. B. 80, 12345, ...)
 EXPOSE 8080
 
-# Start mit variablem Port
-CMD ["sh", "-c", "java -jar /usr/src/app/backend/build/libs/demo-0.0.1-SNAPSHOT.jar --server.port=$PORT"]
-
-
+# Starte App mit Port aus ENV-Variable
+CMD ["sh", "-c", "java -jar build/libs/demo-0.0.1-SNAPSHOT.jar --server.port=$PORT"]
 
 
