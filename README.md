@@ -34,6 +34,8 @@ Ich habe den bestehenden Service erweitert und eine neue `POST`-Anfrage zur Verw
 
 ### Beispiel-POST-Request in Postman
 
+---
+
 ```json
 {
   "modulename": "Adrian Module",
@@ -42,7 +44,9 @@ Ich habe den bestehenden Service erweitert und eine neue `POST`-Anfrage zur Verw
   "description": "This module covers advanced Adrian techniques.",
   "active": true
 }
+
 ---
+
 ### 📸 Screenshot: POST-Request in Postman
 ![POST in Postman](images/Post1.png)
 
