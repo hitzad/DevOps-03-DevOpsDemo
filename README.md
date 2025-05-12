@@ -47,7 +47,7 @@ Ich habe den bestehenden Service erweitert und eine neue `POST`-Anfrage zur Verw
 
 ---
 
-### 📸 Screenshot: POST-Request in Postman
+## 📸 Screenshot: POST-Request in Postman
 ![POST in Postman](images/Post1.png)
 
 Ergebnis in Browser (GET /services/module)
