@@ -1,3 +1,4 @@
+
 # DevOps 03 – DevOpsDemo
 
 ## 📦 Projektaufbau
@@ -42,49 +43,67 @@ Ich habe den bestehenden Service erweitert und eine neue `POST`-Anfrage zur Verw
   "description": "This module covers advanced Adrian techniques.",
   "active": true
 }
+```
+
 ### 📸 Screenshot: POST-Request in Postman
 ![POST in Postman](images/Post1.png)
 
-Ergebnis in Browser (GET /services/module)
+---
+
+## Ergebnis in Browser (GET /services/module)
+
 Nach dem POST ist das neue Modul per GET sichtbar:
 
 ### 📸 Screenshot: GET-Ergebnis im Browser
 ![GET Ergebnis](images/Rest-Services.png)
 
-💡 Fehler & Erkenntnisse
-Bereich	Problem	Lösung
-Backend-Port	8080 war belegt	Java-Prozess beendet
-Frontend-Start	Fehler bei npm run start	npm install vorher ausgeführt
-JSON-Fehler	JSON im Postman war ungültig	Content-Type: application/json + Syntaxprüfung
-Neue Kachel	Anpassung in model.json wurde nicht angezeigt	Frontend neu gestartet → npm run start
-Pull Request	Änderung war nicht sichtbar auf GitHub	Lokale Änderungen committet & gepusht
+---
 
-🧑‍🎨 UI-Anpassung (Path Frontend)
-Ich habe in model.json eine neue Kachel hinzugefügt:
+## 💡 Fehler & Erkenntnisse
 
-<pre> ```json { "type": "button", "name": { "default": "Module" }, "icon": "fa-file-alt", "color": "wet-asphalt", "page": "modulePage", "width": 2 } ``` </pre>
+| Bereich         | Problem                          | Lösung                                               |
+|----------------|----------------------------------|------------------------------------------------------|
+| Backend-Port    | 8080 war belegt                 | Java-Prozess beendet                                 |
+| Frontend-Start  | Fehler bei `npm run start`      | `npm install` vorher ausgeführt                      |
+| JSON-Fehler     | JSON im Postman war ungültig    | `Content-Type: application/json` + Syntaxprüfung     |
+| Neue Kachel     | Wurde nicht angezeigt           | Frontend neu gestartet → `npm run start`             |
+| Pull Request    | Änderung war nicht sichtbar     | Lokale Änderungen committet & gepusht                |
 
+---
 
-Zusätzlich wurde eine neue Seite modulePage erstellt, mit einem Button zum Anlegen eines neuen Moduls (inkl. Verlinkung zum Formular).
+## 🧑‍🎨 UI-Anpassung (Path Frontend)
 
-🧠 Learnings
-Ich verstehe nun, wie Spring Boot und Node.js/Path zusammenspielen
+Ich habe in `model.json` eine neue Kachel hinzugefügt:
 
-REST-Services sind über Postman gut testbar – aber das JSON muss exakt stimmen
+```json
+{
+  "type": "button",
+  "name": { "default": "Module" },
+  "icon": "fa-file-alt",
+  "color": "wet-asphalt",
+  "page": "modulePage",
+  "width": 2
+}
+```
 
-UI-Anpassungen im model.json wirken sich sofort aus, wenn das Frontend neu gestartet wird
+Zusätzlich wurde eine neue Seite `modulePage` erstellt, mit einem Button zum Anlegen eines neuen Moduls (inkl. Verlinkung zum Formular).
 
-Ich konnte Frontend und Backend durch eine eigene REST-Erweiterung logisch verbinden
+---
 
-✅ Checkliste laut Bewertungsvorgabe
- DevOpsDemo gestartet
+## 🧠 Learnings
 
- REST-Service GET, POST implementiert
+- Ich verstehe nun, wie Spring Boot und Node.js/Path zusammenspielen.
+- REST-Services sind über Postman gut testbar – aber das JSON muss exakt stimmen.
+- UI-Anpassungen im `model.json` wirken sich sofort aus, wenn das Frontend neu gestartet wird.
+- Ich konnte Frontend und Backend durch eine eigene REST-Erweiterung logisch verbinden.
 
- Test mit Postman durchgeführt
+---
 
- Frontend angepasst (Kachel, neue Seite)
+## ✅ Checkliste laut Bewertungsvorgabe
 
- Änderungen als Commits dokumentiert
-
- Push auf GitHub + PR erstellt
+- [x] DevOpsDemo gestartet  
+- [x] REST-Service GET, POST implementiert  
+- [x] Test mit Postman durchgeführt  
+- [x] Frontend angepasst (Kachel, neue Seite)  
+- [x] Änderungen als Commits dokumentiert  
+- [x] Push auf GitHub + PR erstellt  
