@@ -13,12 +13,16 @@ WORKDIR /usr/src/app
 # Projektdateien kopieren
 COPY . .
 
-# Frontend statisch ins Backend kopieren (damit Spring Boot sie bereitstellt)
-RUN mkdir -p backend/src/main/resources/static && \
-    cp frontend/index.html frontend/model.json frontend/favicon.ico backend/src/main/resources/static/
+# Frontend-Abhängigkeiten installieren
+WORKDIR /usr/src/app/frontend
+RUN npm install
 
+# Statische Dateien ins Backend kopieren
+RUN mkdir -p /usr/src/app/backend/src/main/resources/static && \
+    cp index.html model.json favicon.ico /usr/src/app/backend/src/main/resources/static/ && \
+    cp -r node_modules/path-framework /usr/src/app/backend/src/main/resources/static/
 
-# Gradle Wrapper ausführbar machen und App bauen
+# Backend bauen
 WORKDIR /usr/src/app/backend
 RUN chmod +x gradlew && ./gradlew build
 
